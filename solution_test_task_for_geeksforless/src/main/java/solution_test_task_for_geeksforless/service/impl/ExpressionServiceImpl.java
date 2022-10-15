@@ -6,6 +6,10 @@ import org.springframework.stereotype.Service;
 import solution_test_task_for_geeksforless.persistence.entity.Expression;
 import solution_test_task_for_geeksforless.persistence.repository.ExpressionRepository;
 import solution_test_task_for_geeksforless.service.ExpressionService;
+import solution_test_task_for_geeksforless.util.Calculation;
+import solution_test_task_for_geeksforless.util.Lexeme;
+import solution_test_task_for_geeksforless.util.LexemeBuffer;
+import solution_test_task_for_geeksforless.util.Parser;
 
 import javax.persistence.EntityNotFoundException;
 import java.util.List;
@@ -20,13 +24,13 @@ public class ExpressionServiceImpl implements ExpressionService {
 
     @Override
     public void create(Expression entity) {
-        expressionRepository.save(entity);
+        saveEntity(entity);
     }
 
     @Override
     public void update(Expression entity) {
         checkExist(expressionRepository, entity.getId());
-        expressionRepository.save(entity);
+        saveEntity(entity);
     }
 
     @Override
@@ -47,6 +51,15 @@ public class ExpressionServiceImpl implements ExpressionService {
     private void checkExist(ExpressionRepository repository, Long id) {
         if (!repository.existsById(id)) {
             throw new EntityNotFoundException("This expression is not found!");
+        }
+    }
+
+    private void saveEntity(Expression entity) {
+        if (!Parser.lexAnalyze(entity.getExpression()).isEmpty()) {
+            List<Lexeme> lexemes = Parser.lexAnalyze(entity.getExpression());
+            LexemeBuffer lexemeBuffer = new LexemeBuffer(lexemes);
+            entity.setResultExpression(Calculation.expr(lexemeBuffer));
+            expressionRepository.save(entity);
         }
     }
 }
