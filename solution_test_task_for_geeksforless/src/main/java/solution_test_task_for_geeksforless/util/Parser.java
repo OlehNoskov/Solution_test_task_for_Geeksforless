@@ -4,12 +4,11 @@ import java.util.*;
 
 public class Parser {
     public static void main(String[] args) {
-        String expressionText = "122 - 34 - 3* (55 + 5.0 * (3 - 2)) * 2";
-        String expressionText2 = "(3.0 +2.2)";
-        List<Lexeme> lexemes = lexAnalyze(expressionText);
+        String expressionText2 = "(3.0 */(2.2)";
+        List<Lexeme> lexemes = lexAnalyze(expressionText2);
         LexemeBuffer lexemeBuffer = new LexemeBuffer(lexemes);
         System.out.println(Calculation.expr(lexemeBuffer));
-        System.out.println(isValidBrackets(expressionText));
+        System.out.println(isValidBrackets(expressionText2));
     }
 
     public static List<Lexeme> lexAnalyze(String expText) {

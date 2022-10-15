@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <meta charset="utf-8">
+    <title>Update Expression</title>
+</head>
+<body>
+
+<div layout:fragment="content">
+
+    <div class="row">
+        <div class="col-12">
+            <div class="card mt-2">
+                <div class="card-header">
+                    <h4>Update user</h4>
+                </div>
+                <div class="card-body">
+                    <form action="#" th:action="@{'/expressions/update/' + ${expression.getId()}}" th:object="${expression}" method="post"
+                          enctype="multipart/form-data">
+                        <div class="form-group">
+                            <label for="expression">New Expression</label><span class="text-danger">*</span>
+                            <input type="text" class="form-control"
+                                   id="expression" aria-describedby="expression"
+                                   placeholder="Enter new expression" th:field="*{expression}" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Update</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

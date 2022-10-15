@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <meta charset="utf-8">
+    <title>Users</title>
+</head>
+<body>
+
+<div>
+    <div layout:fragment="content">
+        <div class="row">
+            <div class="col-12">
+                <div class="card mt-2">
+                    <div>
+                        <form action="#" th:action="@{/expressions/search}" th:object="${search}" method="post">
+                            <div class="row">
+                                <div class="col-12">
+                                    <h5>Search results:</h5>
+                                    <div class="form-group">
+                                        <label for="result">Result</label>
+                                        <input type="text" id="result" name="result" th:field="*{searchResult}">
+                                        <button type="submit" class="btn btn-outline-primary">Search</button>
+                                        <p></p>
+                                    </div>
+                                </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>

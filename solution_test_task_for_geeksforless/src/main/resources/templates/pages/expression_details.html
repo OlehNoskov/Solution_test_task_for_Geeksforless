@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <meta charset="utf-8">
+    <title>Details User</title>
+</head>
+<body>
+
+<div layout:fragment="content">
+
+    <div class="row">
+        <div class="col-12">
+            <div class="card mb-2 mt-2">
+                <div class="card-header">
+                    Details Expression
+                </div>
+                <div class="card-body">
+                    <table class="table table-hover">
+                        <tr>
+                            <th>Id</th>
+                            <td th:text="${expression.getId()}"></td>
+                        </tr>
+                        <tr>
+                            <th>Expression</th>
+                            <td th:text="${expression.getExpression()}"></td>
+                        </tr>
+                        <tr>
+                            <th>Result</th>
+                            <td th:text="${expression.getResultExpression()}"></td>
+                        </tr>
+                    </table>
+
+                    <form>
+                        <a th:href="@{'/expressions/update/' + ${expression.getId()}}" type="button" class="btn btn-info">Update</a>
+                    </form>
+                    <hr>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

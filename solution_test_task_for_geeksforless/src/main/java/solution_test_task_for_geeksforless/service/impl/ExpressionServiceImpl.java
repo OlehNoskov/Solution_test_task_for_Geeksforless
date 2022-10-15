@@ -62,4 +62,9 @@ public class ExpressionServiceImpl implements ExpressionService {
             expressionRepository.save(entity);
         }
     }
+
+    @Override
+    public List<Expression> searchExpressionMoreThanNumber(double number) {
+        return expressionRepository.findAllExpressionWhereResultMore(number);
+    }
 }
