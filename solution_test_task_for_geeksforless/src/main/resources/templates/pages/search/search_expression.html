@@ -24,7 +24,7 @@
                                 <label for="result">Search for equal results</label>
                                 <input class="form-control" type="text" id="result" name="result"
                                        th:field="*{searchResult}" placeholder="Enter number for search equal results"
-                                       required pattern="[0-9]+\.[0-9]+">
+                                       required pattern="[0-9]+\.?[0-9]+">
                             </div>
                             <button type="submit" class="btn btn-success" style="margin: 20px">Search
                             </button>
@@ -40,7 +40,7 @@
                                 <input class="form-control" type="text" id="moreResult" name="moreResult"
                                        th:field="*{searchResult}"
                                        placeholder="Enter number for search results more than input number" required
-                                       pattern="[0-9]+\.[0-9]+">
+                                       pattern="[0-9]+\.?[0-9]+">
                             </div>
                             <button type="submit" class="btn btn-primary" style="margin: 20px">Search
                             </button>
@@ -56,7 +56,7 @@
                                 <input class="form-control" type="text" id="lessResult" name="lessResult"
                                        th:field="*{searchResult}"
                                        placeholder="Enter number for search results less than input number" required
-                                       pattern="[0-9]+\.[0-9]+">
+                                       pattern="[0-9]+\.?[0-9]+">
                             </div>
                             <button type="submit" class="btn btn-warning" style="margin: 20px">Search</button>
                         </div>

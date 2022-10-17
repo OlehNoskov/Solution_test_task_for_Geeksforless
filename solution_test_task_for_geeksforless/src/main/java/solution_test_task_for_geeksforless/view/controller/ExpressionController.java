@@ -14,7 +14,7 @@ import java.util.List;
 
 @Controller
 @RequestMapping("/expressions")
-public class ExpressionController extends AbstractController {
+public class ExpressionController {
     private final ExpressionService expressionService;
     private final Searcher searcher = new Searcher();
 
@@ -47,19 +47,6 @@ public class ExpressionController extends AbstractController {
         return "pages/expression/expression_details";
     }
 
-//    @GetMapping("/update/{id}")
-//    public String update(@PathVariable Long id, Model model) {
-//        Expression expression = expressionService.findById(id);
-//        model.addAttribute("expression", expression);
-//        return "pages/expression/expression_update";
-//    }
-
-//    @PostMapping("/update/{id}")
-//    public String updateExpression(@PathVariable Long id) {
-//        expressionService.update(expressionService.findById(id));
-//        return "redirect:/expressions/all";
-//    }
-
     @GetMapping("/update/{id}")
     public String update(@PathVariable Long id, Model model) {
         ExpressionResponseDto expressionResponseDto = expressionService.getResponseExpressionById(id);
@@ -80,12 +67,8 @@ public class ExpressionController extends AbstractController {
     }
 
     @GetMapping("/search")
-    public String search(Model model, String error) {
-        showMessage(model, false);
+    public String search(Model model) {
         model.addAttribute("search", new Searcher());
-        if (error != null) {
-            showError(model, "Your email and password is invalid.");
-        }
         return "pages/search/search_expression";
     }
 
