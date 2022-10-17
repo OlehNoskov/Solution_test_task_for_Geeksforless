@@ -82,7 +82,6 @@ public class ExpressionServiceImpl implements ExpressionService {
         if (!Parser.lexAnalyze(entity.getExpression()).isEmpty()) {
             List<Lexeme> lexemes = Parser.lexAnalyze(entity.getExpression());
             LexemeBuffer lexemeBuffer = new LexemeBuffer(lexemes);
-            entity.setExpression(entity.getExpression());
             entity.setResultExpression(Calculation.expr(lexemeBuffer));
             expressionRepository.save(entity);
         }
