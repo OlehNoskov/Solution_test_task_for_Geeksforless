@@ -64,7 +64,17 @@ public class ExpressionServiceImpl implements ExpressionService {
     }
 
     @Override
-    public List<Expression> searchExpressionMoreThanNumber(double number) {
-        return expressionRepository.findAllExpressionWhereResultMore(number);
+    public List<Expression> findAllExpressionWithResultEqual(double number) {
+        return expressionRepository.findAllExpressionWhereResultEqual(number);
+    }
+
+    @Override
+    public List<Expression> findAllExpressionWithResultMore(double number) {
+        return null;
+    }
+
+    @Override
+    public List<Expression> findAllExpressionWithResultLess(double number) {
+        return null;
     }
 }

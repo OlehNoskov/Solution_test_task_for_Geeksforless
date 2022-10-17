@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <meta charset="utf-8">
+    <title>All detected expressions</title>
+</head>
+<body>
+
+<div layout:fragment="search">
+
+    <form action="#" th:action="@{/expressions/search/equal}" th:object="${search}" method="post">
+</div>
+
+</body>
+</html>

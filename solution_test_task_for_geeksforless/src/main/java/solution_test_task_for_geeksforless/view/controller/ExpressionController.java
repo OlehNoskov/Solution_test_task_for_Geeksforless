@@ -9,13 +9,12 @@ import solution_test_task_for_geeksforless.service.ExpressionService;
 import solution_test_task_for_geeksforless.util.Searcher;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping("/expressions")
 public class ExpressionController {
     private final ExpressionService expressionService;
-    private Searcher searcher = new Searcher();
+    private final Searcher searcher = new Searcher();
 
     public ExpressionController(ExpressionService expressionService) {
         this.expressionService = expressionService;
@@ -24,13 +23,13 @@ public class ExpressionController {
     @GetMapping("/all")
     public String findAll(Model model) {
         model.addAttribute("expression", expressionService);
-        return "pages/expressions_all";
+        return "pages/expression/expressions_all";
     }
 
     @GetMapping("/new")
     public String createExpression(Model model) {
         model.addAttribute("newExpression", new Expression());
-        return "pages/expression_new";
+        return "pages/expression/expression_new";
     }
 
     @PostMapping("/new")
@@ -43,14 +42,14 @@ public class ExpressionController {
     public String details(@PathVariable Long id, Model model) {
         Expression expression = expressionService.findById(id);
         model.addAttribute("expression", expression);
-        return "pages/expression_details";
+        return "pages/expression/expression_details";
     }
 
     @GetMapping("/update/{id}")
     public String update(@PathVariable Long id, Model model) {
         Expression expression = expressionService.findById(id);
         model.addAttribute("expression", expression);
-        return "pages/expression_update";
+        return "pages/expression/expression_update";
     }
 
     @PostMapping("/update/{id}")
@@ -69,29 +68,31 @@ public class ExpressionController {
     @GetMapping("/search")
     public String search(Model model) {
         model.addAttribute("search", new Searcher());
-        return "pages/search_expression";
+        return "pages/search/search_expression";
     }
 
-    @PostMapping("/search")
-    public String findAllRedirectSearchUsers(@ModelAttribute("search") Searcher inputResult) {
+    @PostMapping("/search/equal")
+    public String searchAllWithEqualResults(@ModelAttribute("search") Searcher inputResult) {
         searcher.setSearchResult(inputResult.getSearchResult());
-        System.out.println(searcher.getSearchResult());
         return "redirect:/expressions/search/all";
     }
 
-//    @GetMapping("/search/all")
-//    public String searchAll(Model model) {
-//        List<Expression> findAllFromSearch = expressionService.findAll()
-//                .stream().filter(e -> e.getResultExpression() > searcher.getParse())
-//                .collect(Collectors.toList());
-//        model.addAttribute("expression", findAllFromSearch);
-//        return "pages/search_expression_all";
+//    @PostMapping("/search")
+//    public String searchAllWithMoreResults(@ModelAttribute("search") Searcher inputResult) {
+//        searcher.setSearchResult(inputResult.getSearchResult());
+//        return "redirect:/expressions/search/all";
+//    }
+//
+//    @PostMapping("/search")
+//    public String searchAllWithLessResults(@ModelAttribute("search") Searcher inputResult) {
+//        searcher.setSearchResult(inputResult.getSearchResult());
+//        return "redirect:/expressions/search/all";
 //    }
 
     @GetMapping("/search/all")
-    public String searchAll(Model model) {
-        List<Expression> findAllFromSearch = expressionService.searchExpressionMoreThanNumber(Double.parseDouble(searcher.getSearchResult()));
+    public String findAllExpressionsWithEqualResults(Model model) {
+        List<Expression> findAllFromSearch = expressionService.findAllExpressionWithResultEqual(Double.parseDouble(searcher.getSearchResult()));
         model.addAttribute("expression", findAllFromSearch);
-        return "pages/search_expression_all";
+        return "pages/search/search_expression_all";
     }
 }
