@@ -28,6 +28,19 @@
                         </div>
                     </div>
                 </form>
+
+                <form action="#" th:action="@{/expressions/search/more}" th:object="${search}" method="post">
+                    <div class="row" style="padding-left: 20px">
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label for="moreResult">Result</label> <span class="text-danger">*</span>
+                                <input class="form-control" type="text" id="moreResult" name="moreResult"
+                                       th:field="*{searchResult}" placeholder="Enter result" required>
+                            </div>
+                            <button type="submit" class="btn btn-outline-primary" style="margin-bottom: 30px">Search equal results</button>
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
     </div>

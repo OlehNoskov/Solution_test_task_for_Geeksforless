@@ -48,6 +48,21 @@ public class ExpressionServiceImpl implements ExpressionService {
         return Lists.newArrayList(expressionRepository.findAll());
     }
 
+    @Override
+    public List<Expression> findAllExpressionWithResultEqual(double number) {
+        return expressionRepository.findAllExpressionWhereResultEqual(number);
+    }
+
+    @Override
+    public List<Expression> findAllExpressionWithResultMore(double number) {
+        return expressionRepository.findAllExpressionWhereResultMore(number);
+    }
+
+    @Override
+    public List<Expression> findAllExpressionWithResultLess(double number) {
+        return expressionRepository.findAllExpressionWhereResultLess(number);
+    }
+
     private void checkExist(ExpressionRepository repository, Long id) {
         if (!repository.existsById(id)) {
             throw new EntityNotFoundException("This expression is not found!");
@@ -61,20 +76,5 @@ public class ExpressionServiceImpl implements ExpressionService {
             entity.setResultExpression(Calculation.expr(lexemeBuffer));
             expressionRepository.save(entity);
         }
-    }
-
-    @Override
-    public List<Expression> findAllExpressionWithResultEqual(double number) {
-        return expressionRepository.findAllExpressionWhereResultEqual(number);
-    }
-
-    @Override
-    public List<Expression> findAllExpressionWithResultMore(double number) {
-        return null;
-    }
-
-    @Override
-    public List<Expression> findAllExpressionWithResultLess(double number) {
-        return null;
     }
 }

@@ -74,14 +74,15 @@ public class ExpressionController {
     @PostMapping("/search/equal")
     public String searchAllWithEqualResults(@ModelAttribute("search") Searcher inputResult) {
         searcher.setSearchResult(inputResult.getSearchResult());
-        return "redirect:/expressions/search/all";
+        return "redirect:/expressions/search/all/equal";
     }
 
-//    @PostMapping("/search")
-//    public String searchAllWithMoreResults(@ModelAttribute("search") Searcher inputResult) {
-//        searcher.setSearchResult(inputResult.getSearchResult());
-//        return "redirect:/expressions/search/all";
-//    }
+    @PostMapping("/search/more")
+    public String searchAllWithMoreResults(@ModelAttribute("search") Searcher inputResult) {
+        searcher.setSearchResult(inputResult.getSearchResult());
+        return "redirect:/expressions/search/all/more";
+    }
+
 //
 //    @PostMapping("/search")
 //    public String searchAllWithLessResults(@ModelAttribute("search") Searcher inputResult) {
@@ -89,9 +90,16 @@ public class ExpressionController {
 //        return "redirect:/expressions/search/all";
 //    }
 
-    @GetMapping("/search/all")
+    @GetMapping("/search/all/equal")
     public String findAllExpressionsWithEqualResults(Model model) {
         List<Expression> findAllFromSearch = expressionService.findAllExpressionWithResultEqual(Double.parseDouble(searcher.getSearchResult()));
+        model.addAttribute("expression", findAllFromSearch);
+        return "pages/search/search_expression_all";
+    }
+
+    @GetMapping("/search/all/more")
+    public String findAllExpressionsWithMoreResults(Model model) {
+        List<Expression> findAllFromSearch = expressionService.findAllExpressionWithResultMore(Double.parseDouble(searcher.getSearchResult()));
         model.addAttribute("expression", findAllFromSearch);
         return "pages/search/search_expression_all";
     }
