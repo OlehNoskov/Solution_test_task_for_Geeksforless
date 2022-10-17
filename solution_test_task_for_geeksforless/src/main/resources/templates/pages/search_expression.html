@@ -5,7 +5,7 @@
       layout:decorate="~{layout}">
 <head>
     <meta charset="utf-8">
-    <title>Users</title>
+    <title>All detected expressions</title>
 </head>
 <body>
 
@@ -14,17 +14,18 @@
         <div class="row">
             <div class="col-12">
                 <div class="card mt-2">
+                    <div class="card-header">
+                        <h4>Search Expression</h4>
+                    </div>
                     <div>
                         <form action="#" th:action="@{/expressions/search}" th:object="${search}" method="post">
-                            <div class="row">
+                            <div class="row" style="padding-left: 20px">
                                 <div class="col-12">
-                                    <h5>Search results:</h5>
                                     <div class="form-group">
-                                        <label for="result">Result</label>
-                                        <input type="text" id="result" name="result" th:field="*{searchResult}">
-                                        <button type="submit" class="btn btn-outline-primary">Search</button>
-                                        <p></p>
+                                        <label for="result">Result</label> <span class="text-danger">*</span>
+                                        <input class="form-control" type="text" id="result" name="result" th:field="*{searchResult}" placeholder="Enter result" required>
                                     </div>
+                                    <button type="submit" class="btn btn-outline-primary" style="margin-bottom: 30px">Search</button>
                                 </div>
                         </form>
                     </div>

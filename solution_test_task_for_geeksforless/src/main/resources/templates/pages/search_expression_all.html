@@ -4,74 +4,72 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{layout}">
 <head>
-  <meta charset="utf-8">
-  <title>All Expressions</title>
-  <style>
-    th.pad {
-      padding-left: 40px;
-    }
-    td.pad{
-      padding-left: 40px;
-    }
-  </style>
+    <meta charset="utf-8">
+    <title>All Expressions</title>
+    <style>
+        th.pad {
+            padding-left: 40px;
+        }
+
+        td.pad {
+            padding-left: 40px;
+        }
+    </style>
 </head>
 <body>
 
 <div layout:fragment="content">
 
-  <div class="row">
-    <div class="col-12">
-      <div class="card mt-2">
-        <div class="card-header">
-          <h4>All Expressions</h4>
-          <hr>
-          <div class="col-12">
-            <table style="width: 100%">
-              <tr>
-                <th>№</th>
-                <th class="pad">Id</th>
-                <th class="pad">Expression</th>
-                <th class="pad">Result</th>
-                <th class="pad">Details</th>
-                <th class="pad">Update</th>
-                <th class="pad">Delete</th>
-              </tr>
+    <div class="row">
+        <div class="col-12">
+            <div class="card mt-2">
+                <div class="card-header">
+                    <h4>All Expressions</h4>
+                    <hr>
+                    <div class="col-12">
+                        <table style="width: 100%">
+                            <tr>
+                                <th>№</th>
+                                <th class="pad">Id</th>
+                                <th class="pad">Expression</th>
+                                <th class="pad">Result</th>
+                                <th class="pad">Details</th>
+                                <th class="pad">Update</th>
+                                <th class="pad">Delete</th>
+                            </tr>
 
-              <tr th:each="expression,iter : ${expression}">
-                <td th:text="${iter.count}">
-                  <nobr>.</nobr>
-                </td>
-                <td th:text="${expression.getId()}" class="pad">></td>
-                <td th:text="${expression.getExpression()}" class="pad">></td>
-                <td th:text="${expression.getResultExpression()}" class="pad">></td>
-                <td>
-                  <a th:href="@{'/expressions/details/' + ${expression.getId()}}" type="button"
-                     class="btn btn-warning" style="margin-left: 30px;">Details</a>
-                </td>
-                <td>
-                  <a th:href="@{'/expressions/update/' + ${expression.getId()}}" type="button"
-                     class="btn btn-primary" style="margin-left: 30px;">Update</a>
-                </td>
-                <td>
-                  <a th:href="@{'/expressions/delete/' + ${expression.getId()}}" type="button"
-                     class="btn btn-danger" style="margin-left: 30px;">Delete</a>
-                </td>
-              </tr>
-            </table>
-          </div>
+                            <tr th:each="expression,iter : ${expression}">
+                                <td th:text="${iter.count}">
+                                    <nobr>.</nobr>
+                                </td>
+                                <td th:text="${expression.getId()}" class="pad">></td>
+                                <td th:text="${expression.getExpression()}" class="pad">></td>
+                                <td th:text="${expression.getResultExpression()}" class="pad">></td>
+                                <td>
+                                    <a th:href="@{'/expressions/details/' + ${expression.getId()}}" type="button"
+                                       class="btn btn-warning" style="margin-left: 30px;">Details</a>
+                                </td>
+                                <td>
+                                    <a th:href="@{'/expressions/update/' + ${expression.getId()}}" type="button"
+                                       class="btn btn-primary" style="margin-left: 30px;">Update</a>
+                                </td>
+                                <td>
+                                    <a th:href="@{'/expressions/delete/' + ${expression.getId()}}" type="button"
+                                       class="btn btn-danger" style="margin-left: 30px;">Delete</a>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
 
-          <form style="margin-top: 20px; margin-left: 15px; margin-bottom: 30px;" >
-            <a th:href="@{/expressions/new/}" type="button" class="btn btn-info" >Add new Expression</a>
-          </form>
+                    <form style="margin-top: 20px; margin-left: 15px; margin-bottom: 30px;">
+                        <a th:href="@{/expressions/new/}" type="button" class="btn btn-success">Add new Expression</a>
+                        <a th:href="@{/expressions/search/}" type="button" class="btn btn-primary">Search Expression</a>
+                    </form>
 
-          <form style="margin-top: 20px; margin-left: 15px; margin-bottom: 30px;" >
-            <a th:href="@{/expressions/search/}" type="button" class="btn btn-info" >Search Expression</a>
-          </form>
-
+                </div>
+            </div>
         </div>
-      </div>
     </div>
-  </div>
 </div>
 </body>
 </html>

@@ -9,6 +9,7 @@ import solution_test_task_for_geeksforless.service.ExpressionService;
 import solution_test_task_for_geeksforless.util.Searcher;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping("/expressions")
@@ -80,7 +81,9 @@ public class ExpressionController {
 
     @GetMapping("/search/all")
     public String searchAll(Model model) {
-        List<Expression> findAllFromSearch = expressionService.searchExpressionMoreThanNumber(searcher.getParse());
+        List<Expression> findAllFromSearch = expressionService.findAll()
+                .stream().filter(e -> e.getResultExpression() > searcher.getParse())
+                .collect(Collectors.toList());
         model.addAttribute("expression", findAllFromSearch);
         return "pages/search_expression_all";
     }
