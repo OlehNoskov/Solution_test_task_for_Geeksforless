@@ -7,8 +7,4 @@ public class Searcher {
     @Getter
     @Setter
     private String searchResult;
-
-    public double getParse() {
-        return Double.parseDouble(searchResult);
-    }
 }

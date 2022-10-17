@@ -24,7 +24,7 @@
         <div class="col-12">
             <div class="card mt-2">
                 <div class="card-header">
-                    <h4>All Expressions</h4>
+                    <h4>All found expressions</h4>
                     <hr>
                     <div class="col-12">
                         <table style="width: 100%">
@@ -42,9 +42,9 @@
                                 <td th:text="${iter.count}">
                                     <nobr>.</nobr>
                                 </td>
-                                <td th:text="${expression.getId()}" class="pad">></td>
-                                <td th:text="${expression.getExpression()}" class="pad">></td>
-                                <td th:text="${expression.getResultExpression()}" class="pad">></td>
+                                <td th:text="${expression.getId()}" class="pad"></td>
+                                <td th:text="${expression.getExpression()}" class="pad"></td>
+                                <td th:text="${expression.getResultExpression()}" class="pad"></td>
                                 <td>
                                     <a th:href="@{'/expressions/details/' + ${expression.getId()}}" type="button"
                                        class="btn btn-warning" style="margin-left: 30px;">Details</a>

@@ -15,7 +15,7 @@ import java.util.stream.Collectors;
 @RequestMapping("/expressions")
 public class ExpressionController {
     private final ExpressionService expressionService;
-    private  Searcher searcher = new Searcher();
+    private Searcher searcher = new Searcher();
 
     public ExpressionController(ExpressionService expressionService) {
         this.expressionService = expressionService;
@@ -79,11 +79,18 @@ public class ExpressionController {
         return "redirect:/expressions/search/all";
     }
 
+//    @GetMapping("/search/all")
+//    public String searchAll(Model model) {
+//        List<Expression> findAllFromSearch = expressionService.findAll()
+//                .stream().filter(e -> e.getResultExpression() > searcher.getParse())
+//                .collect(Collectors.toList());
+//        model.addAttribute("expression", findAllFromSearch);
+//        return "pages/search_expression_all";
+//    }
+
     @GetMapping("/search/all")
     public String searchAll(Model model) {
-        List<Expression> findAllFromSearch = expressionService.findAll()
-                .stream().filter(e -> e.getResultExpression() > searcher.getParse())
-                .collect(Collectors.toList());
+        List<Expression> findAllFromSearch = expressionService.searchExpressionMoreThanNumber(Double.parseDouble(searcher.getSearchResult()));
         model.addAttribute("expression", findAllFromSearch);
         return "pages/search_expression_all";
     }
