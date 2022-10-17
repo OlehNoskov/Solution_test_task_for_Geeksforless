@@ -10,6 +10,8 @@ import solution_test_task_for_geeksforless.util.Calculation;
 import solution_test_task_for_geeksforless.util.Lexeme;
 import solution_test_task_for_geeksforless.util.LexemeBuffer;
 import solution_test_task_for_geeksforless.util.Parser;
+import solution_test_task_for_geeksforless.view.dto.request.ExpressionRequestDto;
+import solution_test_task_for_geeksforless.view.dto.response.ExpressionResponseDto;
 
 import javax.persistence.EntityNotFoundException;
 import java.util.List;
@@ -28,9 +30,11 @@ public class ExpressionServiceImpl implements ExpressionService {
     }
 
     @Override
-    public void update(Expression entity) {
-        checkExist(expressionRepository, entity.getId());
-        saveEntity(entity);
+    public void update(ExpressionRequestDto expressionRequestDto, Long id) {
+        checkExist(expressionRepository, id);
+        Expression expression = expressionRepository.findById(id).get();
+        expression.setExpression(expressionRequestDto.getExpression());
+        saveEntity(expression);
     }
 
     @Override
@@ -41,6 +45,11 @@ public class ExpressionServiceImpl implements ExpressionService {
     @Override
     public Expression findById(Long id) {
         return expressionRepository.findById(id).get();
+    }
+
+    @Override
+    public ExpressionResponseDto getResponseExpressionById(Long id) {
+        return new ExpressionResponseDto(expressionRepository.findById(id).get());
     }
 
     @Override
@@ -73,6 +82,7 @@ public class ExpressionServiceImpl implements ExpressionService {
         if (!Parser.lexAnalyze(entity.getExpression()).isEmpty()) {
             List<Lexeme> lexemes = Parser.lexAnalyze(entity.getExpression());
             LexemeBuffer lexemeBuffer = new LexemeBuffer(lexemes);
+            entity.setExpression(entity.getExpression());
             entity.setResultExpression(Calculation.expr(lexemeBuffer));
             expressionRepository.save(entity);
         }

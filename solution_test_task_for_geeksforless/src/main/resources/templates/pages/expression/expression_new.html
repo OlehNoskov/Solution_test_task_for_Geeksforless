@@ -18,14 +18,14 @@
                     <h4>New Expression</h4>
                 </div>
                 <div class="card-body">
-                              <form action="#" th:action="@{/expressions/new}" th:object="${newExpression}" method="post">
-                    <div class="form-group">
-                        <label for="expression">Enter expression </label><span class="text-danger">*</span>
-                        <input type="text" class="form-control"
-                               id="expression" aria-describedby="expression" placeholder="Enter expression"
-                               th:field="*{expression}" required>
-                    </div>
-                    <button type="submit" class="btn btn-outline-primary">Submit</button>
+                    <form action="#" th:action="@{/expressions/new}" th:object="${newExpression}" method="post">
+                        <div class="form-group">
+                            <label for="expression">Enter expression </label><span class="text-danger">*</span>
+                            <input type="text" class="form-control"
+                                   id="expression" aria-describedby="expression" placeholder="Enter expression"
+                                   th:field="*{expression}" required>
+                        </div>
+                        <button type="submit" class="btn btn-outline-primary">Submit</button>
                     </form>
                 </div>
             </div>
