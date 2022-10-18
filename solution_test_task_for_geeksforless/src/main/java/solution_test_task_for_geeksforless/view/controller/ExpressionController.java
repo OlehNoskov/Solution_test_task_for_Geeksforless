@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.*;
 
 import solution_test_task_for_geeksforless.persistence.entity.Expression;
 import solution_test_task_for_geeksforless.service.ExpressionService;
-import solution_test_task_for_geeksforless.util.Searcher;
+import solution_test_task_for_geeksforless.view.dto.request.SearcherRequestDto;
 import solution_test_task_for_geeksforless.view.dto.request.ExpressionRequestDto;
 import solution_test_task_for_geeksforless.view.dto.response.ExpressionResponseDto;
 
@@ -16,7 +16,7 @@ import java.util.List;
 @RequestMapping("/expressions")
 public class ExpressionController {
     private final ExpressionService expressionService;
-    private final Searcher searcher = new Searcher();
+    private final SearcherRequestDto searcher = new SearcherRequestDto();
 
     public ExpressionController(ExpressionService expressionService) {
         this.expressionService = expressionService;
@@ -68,24 +68,24 @@ public class ExpressionController {
 
     @GetMapping("/search")
     public String search(Model model) {
-        model.addAttribute("search", new Searcher());
+        model.addAttribute("search", new SearcherRequestDto());
         return "pages/search/search_expression";
     }
 
     @PostMapping("/search/equal")
-    public String searchAllWithEqualResults(@ModelAttribute("search") Searcher inputResult) {
+    public String searchAllWithEqualResults(@ModelAttribute("search") SearcherRequestDto inputResult) {
         searcher.setSearchResult(inputResult.getSearchResult());
         return "redirect:/expressions/search/all/equal";
     }
 
     @PostMapping("/search/more")
-    public String searchAllWithMoreResults(@ModelAttribute("search") Searcher inputResult) {
+    public String searchAllWithMoreResults(@ModelAttribute("search") SearcherRequestDto inputResult) {
         searcher.setSearchResult(inputResult.getSearchResult());
         return "redirect:/expressions/search/all/more";
     }
 
     @PostMapping("/search/less")
-    public String searchAllWithLessResults(@ModelAttribute("search") Searcher inputResult) {
+    public String searchAllWithLessResults(@ModelAttribute("search") SearcherRequestDto inputResult) {
         searcher.setSearchResult(inputResult.getSearchResult());
         return "redirect:/expressions/search/all/less";
     }

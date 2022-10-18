@@ -8,9 +8,9 @@ import org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaAutoConfigurat
 @SpringBootApplication(exclude = {
         DataSourceAutoConfiguration.class,
         HibernateJpaAutoConfiguration.class})
-public class SolutionTestTaskApplication {
+public class SolutionApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(SolutionTestTaskApplication.class, args);
+        SpringApplication.run(SolutionApplication.class, args);
     }
 }

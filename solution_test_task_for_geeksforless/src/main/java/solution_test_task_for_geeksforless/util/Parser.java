@@ -3,14 +3,6 @@ package solution_test_task_for_geeksforless.util;
 import java.util.*;
 
 public class Parser {
-    public static void main(String[] args) {
-        String expressionText2 = "(3.0 */(2.2)";
-        List<Lexeme> lexemes = lexAnalyze(expressionText2);
-        LexemeBuffer lexemeBuffer = new LexemeBuffer(lexemes);
-        System.out.println(Calculation.expr(lexemeBuffer));
-        System.out.println(isValidBrackets(expressionText2));
-    }
-
     public static List<Lexeme> lexAnalyze(String expText) {
         if (isValidBrackets(expText) && isValidMathematicalNotation(expText)) {
             ArrayList<Lexeme> lexemes = new ArrayList<>();

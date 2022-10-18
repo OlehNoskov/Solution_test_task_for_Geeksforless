@@ -5,7 +5,7 @@
       layout:decorate="~{layout}">
 <head>
     <meta charset="utf-8">
-    <title>All detected expressions</title>
+    <title>Search expressions</title>
 </head>
 <body>
 
@@ -17,20 +17,6 @@
                 <div class="card-header">
                     <h4>Search Expression (You can search only for one criteria!)</h4>
                 </div>
-                <form action="#" th:action="@{/expressions/search/equal}" th:object="${search}" method="post">
-                    <div class="row">
-                        <div class="col-12">
-                            <div class="card-body">
-                                <label for="result">Search for equal results</label>
-                                <input class="form-control" type="text" id="result" name="result"
-                                       th:field="*{searchResult}" placeholder="Enter number for search equal results"
-                                       required pattern="\-?[0-9]+\.?[0-9]+">
-                            </div>
-                            <button type="submit" class="btn btn-success" style="margin: 20px">Search
-                            </button>
-                        </div>
-                    </div>
-                </form>
 
                 <form action="#" th:action="@{/expressions/search/more}" th:object="${search}" method="post">
                     <div class="row">
@@ -39,8 +25,7 @@
                                 <label for="moreResult">Search for more results</label>
                                 <input class="form-control" type="text" id="moreResult" name="moreResult"
                                        th:field="*{searchResult}"
-                                       placeholder="Enter number for search results more than input number" required
-                                       pattern="\-?[0-9]+\.?[0-9]+">
+                                       placeholder="Enter number for search results more than input number" required pattern="^-?[0-9]+.?[0-9]+$">
                             </div>
                             <button type="submit" class="btn btn-primary" style="margin: 20px">Search
                             </button>
@@ -55,10 +40,23 @@
                                 <label for="lessResult">Search for less results</label>
                                 <input class="form-control" type="text" id="lessResult" name="lessResult"
                                        th:field="*{searchResult}"
-                                       placeholder="Enter number for search results less than input number" required
-                                       pattern="\-?[0-9]+\.?[0-9]+">
+                                       placeholder="Enter number for search results less than input number" required pattern="^-?[0-9]+.?[0-9]+$">
                             </div>
                             <button type="submit" class="btn btn-warning" style="margin: 20px">Search</button>
+                        </div>
+                    </div>
+                </form>
+
+                <form action="#" th:action="@{/expressions/search/equal}" th:object="${search}" method="post">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card-body">
+                                <label for="result">Search for equal results</label>
+                                <input class="form-control" type="text" id="result" name="result"
+                                       th:field="*{searchResult}" placeholder="Enter number for search equal results" required pattern="^-?[0-9]+.?[0-9]+$">
+                            </div>
+                            <button type="submit" class="btn btn-success" style="margin: 20px">Search
+                            </button>
                         </div>
                     </div>
                 </form>

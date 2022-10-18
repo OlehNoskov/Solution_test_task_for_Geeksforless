@@ -25,8 +25,8 @@ public class ExpressionServiceImpl implements ExpressionService {
     }
 
     @Override
-    public void create(Expression entity) {
-        saveEntity(entity);
+    public boolean create(Expression entity) {
+        return saveEntity(entity);
     }
 
     @Override
@@ -78,12 +78,14 @@ public class ExpressionServiceImpl implements ExpressionService {
         }
     }
 
-    private void saveEntity(Expression entity) {
+    private boolean saveEntity(Expression entity) {
         if (!Parser.lexAnalyze(entity.getExpression()).isEmpty()) {
             List<Lexeme> lexemes = Parser.lexAnalyze(entity.getExpression());
             LexemeBuffer lexemeBuffer = new LexemeBuffer(lexemes);
             entity.setResultExpression(Calculation.expr(lexemeBuffer));
             expressionRepository.save(entity);
+            return true;
         }
+        return false;
     }
 }

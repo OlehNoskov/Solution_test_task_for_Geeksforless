@@ -5,7 +5,7 @@ import solution_test_task_for_geeksforless.persistence.entity.BaseEntity;
 import java.util.List;
 
 public interface BaseService<ENTITY extends BaseEntity> {
-    void create(ENTITY entity);
+    boolean create(ENTITY entity);
 
     void delete(Long id);
 
