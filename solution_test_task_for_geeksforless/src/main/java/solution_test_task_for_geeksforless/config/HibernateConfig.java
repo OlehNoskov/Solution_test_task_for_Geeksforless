@@ -14,8 +14,14 @@ import java.io.IOException;
 import java.util.Properties;
 
 @Configuration
+// This class is configuration class
+
 @EnableTransactionManagement
+// This annotation turn on TransactionManager for management database
+
 @EnableJpaRepositories("solution_test_task_for_geeksforless.persistence.repository")
+// Turn on opportunity using JPARepository and specify path repositories
+
 public class HibernateConfig {
     @Value("${spring.datasource.url}")
     private String jdbcUrl;
@@ -47,6 +53,7 @@ public class HibernateConfig {
     private static final String HIBERNATE_ENABLE_LAZY_LOAD_NO_TRANS = "hibernate.enable_lazy_load_no_trans";
     private static final String ENTITY_MANAGER_PACKAGES_TO_SCAN = "solution_test_task_for_geeksforless.persistence.entity";
 
+    // Initialization source data
     @Bean
     public DataSource dataSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
@@ -57,6 +64,7 @@ public class HibernateConfig {
         return dataSource;
     }
 
+    // The main goal LocalSessionFactoryBean - include hibernate SessionFactory in container Spring
     @Bean(name="entityManagerFactory")
     public LocalSessionFactoryBean sessionFactoryBean() {
         LocalSessionFactoryBean sessionFactoryBean = new LocalSessionFactoryBean();
@@ -71,6 +79,7 @@ public class HibernateConfig {
         return sessionFactoryBean;
     }
 
+    // It's implementation for org.springframework.transaction.PlatformTransactionManager для SessionFactory
     @Bean
     public HibernateTransactionManager transactionManager() {
         HibernateTransactionManager manager = new HibernateTransactionManager();
@@ -78,6 +87,7 @@ public class HibernateConfig {
         return manager;
     }
 
+    // This class properties extends from HashTable. This class similar on the HashMap
     private Properties hibernateProperties() {
         Properties properties = new Properties();
         properties.put(HIBERNATE_DIALECT, dialect);
